@@ -1,13 +1,18 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractBaseUser
 # Create your models here.
 
 
-class Registration(models.Model):
+class User(AbstractBaseUser):
     name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
+    email = models.EmailField(max_length=50, unique=True)
     mobile_no = models.IntegerField()
     password = models.CharField(max_length=10)
+    USERNAME_FIELD = 'email'
+
+
+
+
 
 
 class Item(models.Model):

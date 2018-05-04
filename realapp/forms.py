@@ -1,11 +1,14 @@
-from  django import  forms
+from  django import forms
 from django.contrib.auth.models import User
-from .models import Registration
+from .models import *
+
 
 class RegisterUserForm(forms.ModelForm):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+        class Meta:
+            model = User
+            fields = '__all__'
 
-    class Meta:
-        model = Registration
-        fields = '__all__'
+
+class LoginUserForm(forms.Form):
+        email = forms.EmailField(max_length=10)
+        password = forms.CharField(widget=forms.PasswordInput)
